@@ -1,11 +1,15 @@
-﻿namespace AlasdairCooper.Components.Partial;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-public static class Extensions
+namespace AlasdairCooper.Components.Partial
 {
-    public static IServiceCollection AddPartials(this IServiceCollection services)
+
+    public static class Extensions
     {
-        services.AddRazorPages().AddRazorRuntimeCompilation();
-        services.AddHttpClient();
-        return services.AddHttpContextAccessor();
+        public static IServiceCollection AddPartials(this IServiceCollection services)
+        {
+            //services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddHttpClient();
+            return services.AddHttpContextAccessor();
+        }
     }
 }

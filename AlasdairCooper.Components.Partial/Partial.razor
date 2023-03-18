@@ -1,5 +1,7 @@
 @using System.Text.Json;
 @using System.Net.Http.Headers;
+@using System.Net.Http;
+@using Microsoft.AspNetCore.Http;
 
 @typeparam T
 
@@ -13,14 +15,12 @@
     /// The name or path of the partial view that is rendered. 
     /// </summary>
     [Parameter]
-    [EditorRequired]
     public string Name { get; set; } = default!;
 
     /// <summary>
     /// The model to pass into the partial view.
     /// </summary>
     [Parameter]
-    [EditorRequired]
     public T Model { get; set; } = default!;
 
     private MarkupString partialString = (MarkupString)"";
