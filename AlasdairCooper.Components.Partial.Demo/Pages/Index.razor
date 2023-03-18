@@ -1,0 +1,20 @@
+﻿@page "/"
+@using AlasdairCooper.Components.Partial.Demo.Data;
+
+@inject WeatherForecastService ForecastService
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<Partial Name="CountPartial" Model="currentCount"></Partial>
+
+<Counter @bind-CurrentCount="currentCount.Count" />
+
+@code{
+    private CountModel currentCount = new();
+}

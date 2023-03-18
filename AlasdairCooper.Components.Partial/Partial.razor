@@ -1,0 +1,49 @@
+@using System.Text.Json;
+@using System.Net.Http.Headers;
+
+@typeparam T
+
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IHttpClientFactory HttpClientFactory
+
+@partialString
+
+@code {
+    /// <summary>
+    /// The name or path of the partial view that is rendered. 
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public string Name { get; set; } = default!;
+
+    /// <summary>
+    /// The model to pass into the partial view.
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public T Model { get; set; } = default!;
+
+    private MarkupString partialString = (MarkupString)"";
+
+    private HttpClient? httpClient;
+    private HttpRequest? Request => HttpContextAccessor.HttpContext?.Request;
+
+    protected override void OnInitialized()
+    {
+        httpClient = HttpClientFactory.CreateClient();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Request is not null && httpClient is not null)
+        {
+            var req = new HttpRequestMessage(HttpMethod.Post, $"{Request.Scheme}://{Request.Host}/partials/{Name}");
+            req.Headers.Add("type", typeof(T).AssemblyQualifiedName);
+            req.Content = new StringContent(JsonSerializer.Serialize(Model));
+
+            var res = await httpClient.SendAsync(req);
+
+            partialString = (MarkupString)await res.Content.ReadAsStringAsync();
+        }
+    }
+}
