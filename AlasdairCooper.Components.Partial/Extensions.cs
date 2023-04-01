@@ -7,9 +7,10 @@ namespace AlasdairCooper.Components.Partial
     {
         public static IServiceCollection AddPartials(this IServiceCollection services)
         {
-            //services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddHttpClient();
-            return services.AddHttpContextAccessor();
+            services.AddRazorPages();
+            services.AddControllersWithViews();
+            return services.AddTransient<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         }
     }
 }
