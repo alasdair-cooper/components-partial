@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
         <Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
         <OutputType>Library</OutputType>
@@ -21,6 +21,10 @@
     <ItemGroup>
         <None Include="../README.md" Pack="true" PackagePath="/"></None>
         <None Include="../ICON.jpg" Pack="true" PackagePath="/"></None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Razor.Templating.Core" Version="1.8.0" />
     </ItemGroup>
 
 </Project>

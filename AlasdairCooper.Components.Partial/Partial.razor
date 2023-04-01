@@ -2,11 +2,13 @@
 @using System.Net.Http.Headers;
 @using System.Net.Http;
 @using Microsoft.AspNetCore.Http;
+@using Razor.Templating.Core;
 
 @typeparam T
 
 @inject IHttpContextAccessor HttpContextAccessor
 @inject IHttpClientFactory HttpClientFactory
+@inject IRazorTemplateEngine RazorTemplateEngine
 
 @partialString
 
@@ -23,27 +25,10 @@
     [Parameter]
     public T Model { get; set; } = default!;
 
-    private MarkupString partialString = (MarkupString)"";
-
-    private HttpClient? httpClient;
-    private HttpRequest? Request => HttpContextAccessor.HttpContext?.Request;
-
-    protected override void OnInitialized()
-    {
-        httpClient = HttpClientFactory.CreateClient();
-    }
+    private MarkupString partialString = new();
 
     protected override async Task OnParametersSetAsync()
     {
-        if (Request is not null && httpClient is not null)
-        {
-            var req = new HttpRequestMessage(HttpMethod.Post, $"{Request.Scheme}://{Request.Host}/partials/{Name}");
-            req.Headers.Add("type", typeof(T).AssemblyQualifiedName);
-            req.Content = new StringContent(JsonSerializer.Serialize(Model));
-
-            var res = await httpClient.SendAsync(req);
-
-            partialString = (MarkupString)await res.Content.ReadAsStringAsync();
-        }
+        partialString = (MarkupString)await RazorTemplateEngine.RenderAsync(Name, Model);
     }
 }

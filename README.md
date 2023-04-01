@@ -14,16 +14,6 @@ public void ConfigureServices(IServiceCollection services)
     ...
     services.AddPartials();
 }
-
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    ...
-    app.UseEndpoints(endpoints =>
-    {
-        ...
-        endpoints.MapControllers();
-    }
-}
 ```
 ## Setup for .NET 6, 7 and above
 ```csharp
@@ -33,8 +23,6 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 using AlasdairCooper.Components.Partial
 ...
 builder.Services.AddPartials();
-...
-app.MapControllers();
 ```
 ## Usage
 Make sure partials are in a discoverable folder (e.g Views/Shared) and you can just pass the view name as `Partial.Name`. 
