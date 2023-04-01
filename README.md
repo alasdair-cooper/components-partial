@@ -2,20 +2,7 @@
 # AlasdairCooper.Components.Partial
 This is a Blazor component that renders an MVC partial by name with a model parameter. This only works in a Blazor server project.
 Install [the NuGet package](https://www.nuget.org/packages/AlasdairCooper.Components.Partial).
-## Setup for .NET 5
-```csharp
-# Startup.cs
-
-...
-using AlasdairCooper.Components.Partial
-
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-    services.AddPartials();
-}
-```
-## Setup for .NET 6, 7 and above
+## Setup
 ```csharp
 # Program.cs
 
