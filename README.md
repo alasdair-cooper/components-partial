@@ -22,6 +22,6 @@ builder.Services.AddPartials();
 Make sure partials are in a discoverable folder (e.g Views/Shared), then use the component like so: 
 
 ```razor
-<Partial Name="PartialPath" Model="PartialModel">
+<Partial Name="/Path/To/Partial" Model="new PartialModel()">
 ```
 
