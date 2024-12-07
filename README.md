@@ -1,5 +1,5 @@
-[![Nuget](https://img.shields.io/nuget/v/AlasdairCooper.Components.Partial?color=eebb00&style=for-the-badge)](https://www.nuget.org/packages/AlasdairCooper.Godot.Configuration)
-[![Nuget](https://img.shields.io/nuget/dt/AlasdairCooper.Components.Partial?color=0033ee&style=for-the-badge)](https://www.nuget.org/packages/AlasdairCooper.Godot.Configuration)
+[![Nuget](https://img.shields.io/nuget/v/AlasdairCooper.Components.Partial?color=eebb00&style=for-the-badge)](https://www.nuget.org/packages/AlasdairCooper.Components.Partial)
+[![Nuget](https://img.shields.io/nuget/dt/AlasdairCooper.Components.Partial?color=0033ee&style=for-the-badge)](https://www.nuget.org/packages/AlasdairCooper.Components.Partial)
 
 # AlasdairCooper.Components.Partial
 
